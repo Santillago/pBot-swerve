@@ -57,18 +57,23 @@ public final class Constants {
     public static final class Mk3Constants extends SwerveConstants {
         @Override
         protected void setConfiguration() {
-            FRONT_LEFT_OFFSET = 42.8902;
-            REAR_LEFT_OFFSET = 358.9453;
-            FRONT_RIGHT_OFFSET =  255.4648;
-            REAR_RIGHT_OFFSET = 199.0722;
+            FRONT_LEFT_OFFSET = 42.363;
+            REAR_LEFT_OFFSET = 356.309;
+            FRONT_RIGHT_OFFSET =  75.234;
+            REAR_RIGHT_OFFSET = 19.951;
 
             TURN_P = 0.4;
             TURN_FF = 0.01;
+
+            FL_P = -0.2;
+            FL_FF = 0;
 
             FL_DRIVE_FF= new SimpleMotorFeedforward(0.16714, 2.7681, 0.41146);
             FR_DRIVE_FF= new SimpleMotorFeedforward(0.10365, 2.7078, 0.49142);
             RL_DRIVE_FF= new SimpleMotorFeedforward(0.10551, 2.8234, 0.48642);
             RR_DRIVE_FF = new SimpleMotorFeedforward(0.073007, 2.75, 0.40028);
+
+            FL_TURN_INVERTED = true;
 
             MODULE_GEAR_RATIO = 6.68;
             TURNING_MOTOR_GEAR_RATIO = 12.8;

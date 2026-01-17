@@ -39,15 +39,15 @@ public abstract class RobotMap {
     public static final class Mk3Map extends SwerveMap {
         @Override
         protected void setIDs() {
-            FRONT_LEFT_DRIVE_MOTOR_ID = 14;
-            FRONT_RIGHT_DRIVE_MOTOR_ID = 20;
-            REAR_LEFT_DRIVE_MOTOR_ID = 34;
-            REAR_RIGHT_DRIVE_MOTOR_ID = 1;
+             FRONT_LEFT_DRIVE_MOTOR_ID = 14;
+             FRONT_RIGHT_DRIVE_MOTOR_ID = 13;
+             REAR_LEFT_DRIVE_MOTOR_ID = 30;
+             REAR_RIGHT_DRIVE_MOTOR_ID = 34;
 
-            FRONT_LEFT_TURNING_MOTOR_ID = 7;
-            FRONT_RIGHT_TURNING_MOTOR_ID = 31;
-            REAR_LEFT_TURNING_MOTOR_ID = 9;
-            REAR_RIGHT_TURNING_MOTOR_ID = 32;
+             FRONT_LEFT_TURNING_MOTOR_ID = 37;
+             FRONT_RIGHT_TURNING_MOTOR_ID = 31;
+             REAR_LEFT_TURNING_MOTOR_ID = 32;
+             REAR_RIGHT_TURNING_MOTOR_ID = 22;
         }
     }
 
