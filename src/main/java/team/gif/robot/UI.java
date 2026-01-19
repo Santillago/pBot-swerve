@@ -13,7 +13,6 @@ public class UI {
      *  and save file as "YYYY elastic-layout.json"
      */
     public UI() {
-        
     }
 
     /**
@@ -23,7 +22,8 @@ public class UI {
      *     SmartDashboard.putString("Elevator", String.format("%11.2f", Elevator.getPosition());
      */
     public void update() {
-        //Example
-        //SmartDashboard.putNumber("Climber Position", Robot.elevator.getPosition())
+        SmartDashboard.putNumber("Limelight/X Offset", Robot.limelight.getXOffset());
+        SmartDashboard.putNumber("Limelight/Y Offset", Robot.limelight.getYOffset());
+        SmartDashboard.putBoolean("Swerve/Align Mode", Robot.swerveDrive.alignMode);
     }
 }

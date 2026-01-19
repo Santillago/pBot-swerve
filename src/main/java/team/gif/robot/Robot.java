@@ -8,6 +8,7 @@ import edu.wpi.first.wpilibj.TimedRobot;
 import edu.wpi.first.wpilibj2.command.Command;
 import edu.wpi.first.wpilibj2.command.CommandScheduler;
 import team.gif.robot.commands.drivetrain.DriveSwerve;
+import team.gif.robot.subsystems.drivers.Limelight;
 import team.gif.robot.subsystems.drivers.Pigeon2_0;
 import team.gif.robot.subsystems.drivers.swerve.SparkMaxDriveMotor;
 import team.gif.robot.subsystems.drivers.swerve.TalonSRXTurnMotorEncoder;
@@ -29,6 +30,8 @@ public class Robot extends TimedRobot {
     private RobotContainer robotContainer;
     public static OI oi;
 
+    public static Limelight limelight;
+
     public static Pigeon2_0 pigeon;
 
     public static SwerveConfiguration swerveConfig;
@@ -38,7 +41,6 @@ public class Robot extends TimedRobot {
 
     public static final boolean enableSwerveDebug = true;
     public static final boolean fullDashboard = true;
-
 
     /**
      * This function is run when the robot is first started up and should be used for any
@@ -50,6 +52,8 @@ public class Robot extends TimedRobot {
         robotContainer = new RobotContainer();
 
         pigeon = new Pigeon2_0(RobotMap.PIGEON_ID);
+
+        limelight = new Limelight("limelight-rear");
 
 //        swerveConfig = new SwerveConfiguration(new RobotMap.Mk4Map(), new Constants.Mk4Constants(), TalonFXDriveMotor::new, TalonFXTurnMotor::new, CANCoderEncoder::new);
         swerveConfig = new SwerveConfiguration(new RobotMap.Mk3Map(), new Constants.Mk3Constants(), SparkMaxDriveMotor::new, TalonSRXTurnMotorEncoder::new, null);
@@ -107,11 +111,15 @@ public class Robot extends TimedRobot {
         if (autonomousCommand != null) {
             autonomousCommand.cancel();
         }
+
+
     }
 
     /** This function is called periodically during operator control. */
     @Override
-    public void teleopPeriodic() {}
+    public void teleopPeriodic() {
+
+    }
 
     @Override
     public void testInit() {

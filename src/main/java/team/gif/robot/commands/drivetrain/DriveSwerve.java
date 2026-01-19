@@ -1,5 +1,6 @@
 package team.gif.robot.commands.drivetrain;
 
+import edu.wpi.first.math.controller.PIDController;
 import edu.wpi.first.math.filter.SlewRateLimiter;
 import edu.wpi.first.wpilibj2.command.Command;
 import team.gif.robot.Constants;
@@ -9,11 +10,13 @@ public class DriveSwerve extends Command {
     private final SlewRateLimiter forwardLimiter;
     private final SlewRateLimiter strafeLimiter;
     private final SlewRateLimiter turnLimiter;
+    private PIDController alignPID;
 
     public DriveSwerve() {
         this.forwardLimiter = new SlewRateLimiter(Robot.swerveConfig.constants.MAX_ACCEL_METERS_PER_SECOND_SQUARED);
         this.strafeLimiter = new SlewRateLimiter(Robot.swerveConfig.constants.MAX_ACCEL_METERS_PER_SECOND_SQUARED);
         this.turnLimiter = new SlewRateLimiter(Robot.swerveConfig.constants.MAX_ANGULAR_ACCEL_RADIANS_PER_SECOND_SQUARED);
+        this.alignPID = new PIDController(Constants.Limelight.TELE_APRILTAG_ALIGNMENT_P, 0, 0);
         addRequirements(Robot.swerveDrive);
     }
 
@@ -30,9 +33,6 @@ public class DriveSwerve extends Command {
 
             double strafe = -Robot.oi.driver.getLeftX(); // need to invert because -X is left, +X is right
             strafe = (Math.abs(strafe) > Constants.Joystick.DEADBAND) ? strafe : 0.0;
-
-            double rot = -Robot.oi.driver.getRightX(); // need to invert because left is negative, right is positive
-            rot = (Math.abs(rot) > Constants.Joystick.DEADBAND) ? rot : 0.0;
 
             forwardSign = forward/Math.abs(forward);
             strafeSign = strafe/Math.abs(strafe);
@@ -56,17 +56,30 @@ public class DriveSwerve extends Command {
             forward = forwardLimiter.calculate(forward) * Robot.swerveDrive.getDrivePace().getValue();
             strafe = strafeLimiter.calculate(strafe) * Robot.swerveDrive.getDrivePace().getValue();
 
-            // slow dpwn the rotation by converting the linear response to a curve
-            if (rot < 0 ) {
-                rot = rot * -rot;
-            } else {
-                rot = rot * rot;
+            if(Robot.swerveDrive.alignMode){
+                double targetRot = alignPID.calculate(Robot.limelight.getXOffset(), 0);
+                targetRot *= Robot.swerveConfig.constants.PHYSICAL_MAX_ANGULAR_SPEED_RADIANS_PER_SECOND;
+                targetRot *= Constants.Limelight.TELE_LIMELIGHT_ALIGN_BOOST_PERCENT;
+
+                Robot.swerveDrive.drive(forward*.3, strafe*.3, targetRot);
+            }
+            else{
+                double rot = -Robot.oi.driver.getRightX(); // need to invert because left is negative, right is positive
+                rot = (Math.abs(rot) > Constants.Joystick.DEADBAND) ? rot : 0.0;
+
+                // slow dpwn the rotation by converting the linear response to a curve
+                if (rot < 0 ) {
+                    rot = rot * -rot;
+                } else {
+                    rot = rot * rot;
+                }
+
+                rot = turnLimiter.calculate(rot) * Robot.swerveConfig.constants.PHYSICAL_MAX_ANGULAR_SPEED_RADIANS_PER_SECOND;
+
+                // the robot starts facing the driver station so for this year negating y and x
+                Robot.swerveDrive.drive(forward*.3, strafe*.3, rot*.3);
             }
 
-             rot = turnLimiter.calculate(rot) * Robot.swerveConfig.constants.PHYSICAL_MAX_ANGULAR_SPEED_RADIANS_PER_SECOND;
-
-            // the robot starts facing the driver station so for this year negating y and x
-            Robot.swerveDrive.drive(forward, strafe, rot);
     }
 
     @Override

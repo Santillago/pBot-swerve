@@ -81,6 +81,7 @@ public class SwerveDrivetrain extends SubsystemBase {
     public String[] limelightNames = new String[] {};
     
     public boolean debugMode = false;
+    public boolean alignMode = false;
 
     // Network Table publishers for the swerve
     // states so that we can use them in advantage scope
@@ -144,6 +145,15 @@ public class SwerveDrivetrain extends SubsystemBase {
             posePublisher.set(poseEstimator.getEstimatedPosition());
             updateShuffleboardDebug();
         }
+    }
+
+    /**
+     * Toggle align mode on the robot, which will continuously align a detected target
+     * @return a boolean which determines the status of the robot's align mode
+     */
+    public boolean toggleAlignMode(){
+       alignMode = !alignMode;
+       return alignMode;
     }
 
     /**

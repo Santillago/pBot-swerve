@@ -91,4 +91,11 @@ public final class Constants {
     public static final class Joystick {
         public static final double DEADBAND = 0.1;
     }
+
+    public static final class Limelight {
+        public final static double TELE_APRILTAG_ALIGNMENT_P = 0.002634056850697681;
+        public static final double TELE_APRILTAG_RANGING_P = 0.0036053377197318524;
+        public static final double TELE_LIMELIGHT_ALIGN_BOOST_PERCENT = 1.75;
+
+    }
 }
