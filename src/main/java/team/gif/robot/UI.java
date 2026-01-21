@@ -1,6 +1,7 @@
 package team.gif.robot;
 
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
+import team.gif.robot.commands.drivetrain.DriveToRange;
 
 public class UI {
     /**
@@ -13,6 +14,8 @@ public class UI {
      *  and save file as "YYYY elastic-layout.json"
      */
     public UI() {
+        SmartDashboard.putNumber("P", Constants.Limelight.TELE_APRILTAG_DISTANCE_P);
+        SmartDashboard.putNumber("Desired", Constants.Limelight.DESIRED_DISTANCE_IN);
     }
 
     /**
@@ -25,5 +28,7 @@ public class UI {
         SmartDashboard.putNumber("Limelight/X Offset", Robot.limelight.getXOffset());
         SmartDashboard.putNumber("Limelight/Y Offset", Robot.limelight.getYOffset());
         SmartDashboard.putBoolean("Swerve/Align Mode", Robot.swerveDrive.alignMode);
+        Constants.Limelight.TELE_APRILTAG_DISTANCE_P = SmartDashboard.getNumber("P", Constants.Limelight.TELE_APRILTAG_DISTANCE_P);
+        Constants.Limelight.DESIRED_DISTANCE_IN = SmartDashboard.getNumber("Desired", Constants.Limelight.DESIRED_DISTANCE_IN);
     }
 }

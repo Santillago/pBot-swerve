@@ -31,13 +31,14 @@ public class TagAlignment extends Command {
         //Convert to radians per second
         targetAngularVelocity *= Robot.swerveConfig.constants.PHYSICAL_MAX_ANGULAR_SPEED_RADIANS_PER_SECOND;
 
+        //NOTE: Driving to the target using this method is very finicky and should really not be used, look at the DriveToRange command for a better example
         //Get Y offset (from target to crosshair) and use P control to reach 0 offset
         //Keep in mind, that because the target and the limelight are mounted at different heights, using y offset to range is a viable choice. If they were mounted at similar heights, then you would need to use area. //-0.71
         double targetLinearVelocity = rangePID.calculate(Robot.limelight.getYOffset(), 0);
         //Convert to meters per second
         targetLinearVelocity *= Robot.swerveConfig.constants.PHYSICAL_MAX_SPEED_METERS_PER_SECOND;
         //Invert values since positive values go backward
-        targetLinearVelocity *= -1.0;
+        targetLinearVelocity *= 1.0;
 
         //Apply boosts since the original values are too slow
         targetLinearVelocity *= Constants.Limelight.TELE_LIMELIGHT_ALIGN_BOOST_PERCENT;

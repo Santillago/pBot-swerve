@@ -93,9 +93,17 @@ public final class Constants {
     }
 
     public static final class Limelight {
-        public final static double TELE_APRILTAG_ALIGNMENT_P = 0.002634056850697681;
+        public static final double TELE_APRILTAG_ALIGNMENT_P = 0.001934;
         public static final double TELE_APRILTAG_RANGING_P = 0.0036053377197318524;
+        public static double TELE_APRILTAG_DISTANCE_P = 0.1;
+        public static double DESIRED_DISTANCE_IN = 55;
         public static final double TELE_LIMELIGHT_ALIGN_BOOST_PERCENT = 1.75;
+        //The angle between the horizontal and the center lens
+        public static final double LIMELIGHT_MOUNT_ANGLE_DEG = 45;
+        //Distance from ground to center of Limelight lens
+        public static final double LIMELIGHT_LENS_HEIGHT_INCHES = 21.625;
+        //Distance from ground to target
+        public static final double LIMELIGHT_GOAL_HEIGHT_INCHES = 38.375;
 
     }
 }
