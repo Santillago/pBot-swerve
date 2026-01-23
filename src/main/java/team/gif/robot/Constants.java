@@ -94,6 +94,7 @@ public final class Constants {
 
     public static final class Limelight {
         public static final double TELE_APRILTAG_ALIGNMENT_P = 0.001934;
+        public static final double TELE_APRIL_TAG_ALIGNMENT_D = 0.012;
         public static final double TELE_APRILTAG_RANGING_P = 0.0036053377197318524;
         public static double TELE_APRILTAG_DISTANCE_P = 0.1;
         public static double DESIRED_DISTANCE_IN = 55;
@@ -103,7 +104,7 @@ public final class Constants {
         //Distance from ground to center of Limelight lens
         public static final double LIMELIGHT_LENS_HEIGHT_INCHES = 21.625;
         //Distance from ground to target
-        public static final double LIMELIGHT_GOAL_HEIGHT_INCHES = 38.375;
+        public static final double LIMELIGHT_GOAL_HEIGHT_INCHES = 25.5;
 
     }
 }

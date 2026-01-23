@@ -15,6 +15,7 @@ public class UI {
      */
     public UI() {
         SmartDashboard.putNumber("P", Constants.Limelight.TELE_APRILTAG_DISTANCE_P);
+        SmartDashboard.putNumber("D", Constants.Limelight.TELE_APRIL_TAG_ALIGNMENT_D);
         SmartDashboard.putNumber("Desired", Constants.Limelight.DESIRED_DISTANCE_IN);
     }
 

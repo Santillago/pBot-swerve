@@ -12,7 +12,7 @@ public class TagAlignment extends Command {
 
     public TagAlignment() {
         super();
-        this.alignPID = new PIDController(Constants.Limelight.TELE_APRILTAG_ALIGNMENT_P, 0, 0);
+        this.alignPID = new PIDController(Constants.Limelight.TELE_APRILTAG_ALIGNMENT_P, 0, Constants.Limelight.TELE_APRIL_TAG_ALIGNMENT_D);
         this.rangePID = new PIDController(Constants.Limelight.TELE_APRILTAG_RANGING_P, 0, 0);
         addRequirements(Robot.swerveDrive);
     }
