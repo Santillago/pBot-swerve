@@ -59,7 +59,7 @@ public class DriveSwerve extends Command {
             if(Robot.swerveDrive.alignMode){
                 double targetRot = alignPID.calculate(Robot.limelight.getXOffset(), 0);
                 targetRot *= Robot.swerveConfig.constants.PHYSICAL_MAX_ANGULAR_SPEED_RADIANS_PER_SECOND;
-                targetRot *= Constants.Limelight.TELE_LIMELIGHT_ALIGN_BOOST_PERCENT;
+                targetRot *= Constants.Limelight.TELE_APRILTAG_ALIGN_BOOST_PERCENT;
 
                 Robot.swerveDrive.drive(forward*.3, strafe*.3, targetRot);
             }

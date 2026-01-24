@@ -8,6 +8,7 @@ import edu.wpi.first.wpilibj.TimedRobot;
 import edu.wpi.first.wpilibj2.command.Command;
 import edu.wpi.first.wpilibj2.command.CommandScheduler;
 import team.gif.robot.commands.drivetrain.DriveSwerve;
+import team.gif.robot.commands.drivetrain.DriveToRange;
 import team.gif.robot.subsystems.drivers.Limelight;
 import team.gif.robot.subsystems.drivers.Pigeon2_0;
 import team.gif.robot.subsystems.drivers.swerve.SparkMaxDriveMotor;
@@ -137,5 +138,7 @@ public class Robot extends TimedRobot {
 
     /** This function is called periodically whilst in simulation. */
     @Override
-    public void simulationPeriodic() {}
+    public void simulationPeriodic() {
+        new DriveToRange();
+    }
 }

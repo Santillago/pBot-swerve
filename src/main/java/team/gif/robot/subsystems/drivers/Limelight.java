@@ -307,7 +307,7 @@ public class Limelight {
 
         double targetOffsetAngle_Vertical = getYOffset();
         double angleToGoalDegrees = mountingAngleLLDegrees + targetOffsetAngle_Vertical;
-        double angleToGoalRadians = angleToGoalDegrees * (3.14159 / 180.0);
+        double angleToGoalRadians = angleToGoalDegrees * (Math.PI / 180.0);
 
         //calculate distance (shooter is 4 inches behind limelight)
         return offsetInches + (goalHeightInches - lensHeightInches) / Math.tan(angleToGoalRadians);

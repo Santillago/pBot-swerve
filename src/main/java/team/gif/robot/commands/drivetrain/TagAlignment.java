@@ -8,7 +8,7 @@ import team.gif.robot.Robot;
 
 public class TagAlignment extends Command {
 
-    private PIDController alignPID, rangePID;
+    private final PIDController alignPID, rangePID;
 
     public TagAlignment() {
         super();
@@ -41,8 +41,8 @@ public class TagAlignment extends Command {
         targetLinearVelocity *= 1.0;
 
         //Apply boosts since the original values are too slow
-        targetLinearVelocity *= Constants.Limelight.TELE_LIMELIGHT_ALIGN_BOOST_PERCENT;
-        targetAngularVelocity *= Constants.Limelight.TELE_LIMELIGHT_ALIGN_BOOST_PERCENT;
+        targetLinearVelocity *= Constants.Limelight.TELE_APRILTAG_ALIGN_BOOST_PERCENT;
+        targetAngularVelocity *= Constants.Limelight.TELE_APRILTAG_ALIGN_BOOST_PERCENT;
 
 
         //targetingAngularVelocity will eventually become 0
