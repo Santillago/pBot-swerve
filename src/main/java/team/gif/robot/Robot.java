@@ -55,6 +55,7 @@ public class Robot extends TimedRobot {
         pigeon = new Pigeon2_0(RobotMap.PIGEON_ID);
 
         limelight = new Limelight("limelight-rear");
+        Robot.limelight.setDistanceEstimatorParams(Constants.Limelight.LIMELIGHT_MOUNT_ANGLE_DEG, Constants.Limelight.LIMELIGHT_LENS_HEIGHT_INCHES, Constants.Limelight.LIMELIGHT_GOAL_HEIGHT_INCHES, 0);
 
 //        swerveConfig = new SwerveConfiguration(new RobotMap.Mk4Map(), new Constants.Mk4Constants(), TalonFXDriveMotor::new, TalonFXTurnMotor::new, CANCoderEncoder::new);
         swerveConfig = new SwerveConfiguration(new RobotMap.Mk3Map(), new Constants.Mk3Constants(), SparkMaxDriveMotor::new, TalonSRXTurnMotorEncoder::new, null);
@@ -83,7 +84,6 @@ public class Robot extends TimedRobot {
         // and running subsystem periodic() methods.  This must be called from the robot's periodic
         // block in order for anything in the Command-based framework to work.
         CommandScheduler.getInstance().run();
-
         ui.update();
 
     }

@@ -8,12 +8,12 @@ import team.gif.robot.Robot;
 
 public class TagAlignment extends Command {
 
-    private final PIDController alignPID, rangePID;
+    private final PIDController alignPID;//, rangePID;
 
     public TagAlignment() {
         super();
         this.alignPID = new PIDController(Constants.Limelight.TELE_APRILTAG_ALIGNMENT_P, 0, Constants.Limelight.TELE_APRIL_TAG_ALIGNMENT_D);
-        this.rangePID = new PIDController(Constants.Limelight.TELE_APRILTAG_RANGING_P, 0, 0);
+//        this.rangePID = new PIDController(Constants.Limelight.TELE_APRILTAG_RANGING_P, 0, 0);
         addRequirements(Robot.swerveDrive);
     }
 
@@ -34,19 +34,19 @@ public class TagAlignment extends Command {
         //NOTE: Driving to the target using this method is very finicky and should really not be used, look at the DriveToRange command for a better example
         //Get Y offset (from target to crosshair) and use P control to reach 0 offset
         //Keep in mind, that because the target and the limelight are mounted at different heights, using y offset to range is a viable choice. If they were mounted at similar heights, then you would need to use area. //-0.71
-        double targetLinearVelocity = rangePID.calculate(Robot.limelight.getYOffset(), 0);
+//        double targetLinearVelocity = rangePID.calculate(Robot.limelight.getYOffset(), 0);
         //Convert to meters per second
-        targetLinearVelocity *= Robot.swerveConfig.constants.PHYSICAL_MAX_SPEED_METERS_PER_SECOND;
+//        targetLinearVelocity *= Robot.swerveConfig.constants.PHYSICAL_MAX_SPEED_METERS_PER_SECOND;
         //Invert values since positive values go backward
-        targetLinearVelocity *= 1.0;
+//        targetLinearVelocity *= 1.0;
 
         //Apply boosts since the original values are too slow
-        targetLinearVelocity *= Constants.Limelight.TELE_APRILTAG_ALIGN_BOOST_PERCENT;
-        targetAngularVelocity *= Constants.Limelight.TELE_APRILTAG_ALIGN_BOOST_PERCENT;
+//        targetLinearVelocity *= Constants.Limelight.TELE_APRILTAG_ALIGN_BOOST_PERCENT;
+//        targetAngularVelocity *= Constants.Limelight.TELE_APRILTAG_ALIGN_BOOST_PERCENT;
 
 
         //targetingAngularVelocity will eventually become 0
-        Robot.swerveDrive.drive(targetLinearVelocity, 0, targetAngularVelocity);
+        Robot.swerveDrive.drive(0, 0, targetAngularVelocity);
     }
 
     // Return true when the command should end, false if it should continue. Runs every ~20ms.

@@ -65,8 +65,14 @@ public final class Constants {
             TURN_P = 0.4;
             TURN_FF = 0.01;
 
-            FL_P = -0.2;
+            FL_P = -0.255;
             FL_FF = 0;
+
+//            RR_P = 0;
+//            RR_FF = 0;
+
+
+
 
             FL_DRIVE_FF= new SimpleMotorFeedforward(0.16714, 2.7681, 0.41146);
             FR_DRIVE_FF= new SimpleMotorFeedforward(0.10365, 2.7078, 0.49142);
@@ -95,16 +101,18 @@ public final class Constants {
     public static final class Limelight {
         public static final double TELE_APRILTAG_ALIGNMENT_P = 0.001934;
         public static final double TELE_APRIL_TAG_ALIGNMENT_D = 0.012;
-        public static final double TELE_APRILTAG_RANGING_P = 0.0036053377197318524;
-        public static double TELE_APRILTAG_DISTANCE_P = 0.1;
+        public static double TELE_APRILTAG_DISTANCE_P = 0.00265;
+        public static final double TELE_APRILTAG_DISTANCE_I = 0.000015;
+        public static final double TELE_APRILTAG_DISTANCE_D = 0.0;
         public static double TELE_APRILTAG_DESIRED_DISTANCE_INCHES = 55;
         public static final double TELE_APRILTAG_ALIGN_BOOST_PERCENT = 1.75;
         //The angle between the horizontal and the center lens
-        public static final double LIMELIGHT_MOUNT_ANGLE_DEG = 45;
+        public static double LIMELIGHT_MOUNT_ANGLE_DEG = -1.15;
         //Distance from ground to center of Limelight lens
         public static final double LIMELIGHT_LENS_HEIGHT_INCHES = 21.625;
         //Distance from ground to target
-        public static final double LIMELIGHT_GOAL_HEIGHT_INCHES = 25.5;
+        public static final double LIMELIGHT_GOAL_HEIGHT_INCHES = 40.25;
 
+        //        public static final double TELE_APRILTAG_RANGING_P = 0.0036053377197318524;
     }
 }

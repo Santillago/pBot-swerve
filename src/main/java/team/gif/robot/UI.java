@@ -14,9 +14,7 @@ public class UI {
      *  and save file as "YYYY elastic-layout.json"
      */
     public UI() {
-        SmartDashboard.putNumber("Limelight/Dist_P", Constants.Limelight.TELE_APRILTAG_DISTANCE_P);
         SmartDashboard.putNumber("Limelight/Desired", Constants.Limelight.TELE_APRILTAG_DESIRED_DISTANCE_INCHES);
-
     }
 
     /**
@@ -28,8 +26,9 @@ public class UI {
     public void update() {
         SmartDashboard.putNumber("Limelight/X Offset", Robot.limelight.getXOffset());
         SmartDashboard.putNumber("Limelight/Y Offset", Robot.limelight.getYOffset());
-        SmartDashboard.getNumber("Limelight/Dist_P", Constants.Limelight.TELE_APRILTAG_DISTANCE_P);
-        SmartDashboard.getNumber("Limelight/Desired_Dist", Constants.Limelight.TELE_APRILTAG_DESIRED_DISTANCE_INCHES);
+        Constants.Limelight.TELE_APRILTAG_DESIRED_DISTANCE_INCHES = SmartDashboard.getNumber("Limelight/Desired_Dist", Constants.Limelight.TELE_APRILTAG_DESIRED_DISTANCE_INCHES);
         SmartDashboard.putBoolean("Swerve/Align Mode", Robot.swerveDrive.alignMode);
+        SmartDashboard.putNumber("Limelight/Current_Dist", Robot.limelight.getDistance());
+
     }
 }
