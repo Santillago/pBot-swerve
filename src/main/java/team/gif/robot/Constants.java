@@ -113,7 +113,7 @@ public final class Constants {
         //Distance from ground to center of Limelight lens
         public static final double LIMELIGHT_LENS_HEIGHT_INCHES = 21.625;
         //Distance from ground to target
-        public static final double LIMELIGHT_GOAL_HEIGHT_INCHES = 40.25;
+        public static final double LIMELIGHT_GOAL_HEIGHT_INCHES = 42.5;
 
         //        public static final double TELE_APRILTAG_RANGING_P = 0.0036053377197318524;
     }

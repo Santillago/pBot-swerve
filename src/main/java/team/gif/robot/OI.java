@@ -97,7 +97,7 @@ public class OI {
         dB.onTrue(new Reset0());
         dY.whileTrue(new DriveToRange());
         dA.whileTrue(new TagAlignment());
-        dX.onTrue(new InstantCommand(Robot.swerveDrive::toggleAlignMode));
+//        dX.onTrue(new InstantCommand(Robot.swerveDrive::toggleAlignMode));
 
 
     }

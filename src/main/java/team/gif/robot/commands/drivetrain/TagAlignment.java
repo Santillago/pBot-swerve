@@ -1,5 +1,6 @@
 package team.gif.robot.commands.drivetrain;
 
+import edu.wpi.first.math.MathUtil;
 import edu.wpi.first.math.controller.PIDController;
 import edu.wpi.first.wpilibj2.command.Command;
 import team.gif.lib.drivePace;
@@ -28,6 +29,7 @@ public class TagAlignment extends Command {
     public void execute() {
         //Get x offset from the apriltag and use P control to reach 0 offset;
         double targetAngularVelocity = alignPID.calculate(Robot.limelight.getXOffset(), 0);
+        targetAngularVelocity = MathUtil.clamp(targetAngularVelocity, -0.5, 0.5);
         //Convert to radians per second
         targetAngularVelocity *= Robot.swerveConfig.constants.PHYSICAL_MAX_ANGULAR_SPEED_RADIANS_PER_SECOND;
 
