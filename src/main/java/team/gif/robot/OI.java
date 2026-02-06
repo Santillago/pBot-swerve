@@ -1,8 +1,10 @@
 package team.gif.robot;
 
 import edu.wpi.first.wpilibj.DriverStation;
+import edu.wpi.first.wpilibj2.command.InstantCommand;
 import edu.wpi.first.wpilibj2.command.button.CommandXboxController;
 import edu.wpi.first.wpilibj2.command.button.Trigger;
+import edu.wpi.first.wpilibj2.command.sysid.SysIdRoutine;
 import team.gif.robot.commands.CollectorRPM;
 import team.gif.robot.commands.drivetrain.Reset0;
 
@@ -93,7 +95,10 @@ public class OI {
          */
 
         dB.whileTrue(new CollectorRPM());
-
+        aA.whileTrue(new InstantCommand(() -> Robot.collector.sysIdQuasistatic(SysIdRoutine.Direction.kForward)));
+        aB.whileTrue(new InstantCommand(() -> Robot.collector.sysIdQuasistatic(SysIdRoutine.Direction.kReverse)));
+        aX.whileTrue(new InstantCommand(() -> Robot.collector.sysIdDynamic(SysIdRoutine.Direction.kForward)));
+        aY.whileTrue(new InstantCommand(() -> Robot.collector.sysIdDynamic(SysIdRoutine.Direction.kReverse)));
 
     }
 }

@@ -1,23 +1,29 @@
 package team.gif.robot.commands;
 
+import edu.wpi.first.math.controller.BangBangController;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import edu.wpi.first.wpilibj2.command.Command;
 import team.gif.robot.Robot;
 
 public class CollectorRPM extends Command {
 
-    double rpm = 0;
+    double desiredRPM = 0;
+    private final BangBangController bangController;
+
+
 
     public CollectorRPM() {
         super();
         addRequirements(Robot.collector);
+        this.bangController = new BangBangController();
     }
 
     // Called when the command is initially scheduled.
     @Override
     public void initialize() {
-        rpm = SmartDashboard.getNumber("Collector/RPM", 0);
-        Robot.collector.runShooter(rpm);
+        desiredRPM = SmartDashboard.getNumber("Collector/RPM", 0);
+        desiredRPM = bangController.calculate(Robot.collector.getVelocity(), desiredRPM);
+        Robot.collector.runShooter(desiredRPM);
     }
 
     // Called every time the scheduler runs (~20ms) while the command is scheduled
