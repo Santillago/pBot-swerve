@@ -1,0 +1,78 @@
+// Copyright (c) FIRST and other WPILib contributors.
+// Open Source Software; you can modify and/or share it under the terms of
+// the WPILib BSD license file in the root directory of this project.
+
+package team.gif.robot.subsystems;
+
+import com.ctre.phoenix6.configs.MotorOutputConfigs;
+import com.ctre.phoenix6.configs.TalonFXConfiguration;
+import com.ctre.phoenix6.controls.VelocityVoltage;
+import com.ctre.phoenix6.hardware.TalonFX;
+import com.ctre.phoenix6.signals.NeutralModeValue;
+import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
+import edu.wpi.first.wpilibj2.command.SubsystemBase;
+import team.gif.robot.RobotMap;
+
+public class Collector extends SubsystemBase {
+
+    public TalonFX collector;
+    public TalonFXConfiguration config = new TalonFXConfiguration();
+    public VelocityVoltage velocityVoltage;
+
+    public Collector() {
+        collector = new TalonFX(RobotMap.COLLECTOR_ID);
+
+        config.Slot0.kP = 0.001;
+        config.Slot0.kI = 0;
+        config.Slot0.kD = 0;
+
+        collector.getConfigurator().apply(config);
+
+        velocityVoltage = new VelocityVoltage(0).withSlot(0);
+
+    }
+
+    @Override
+    public void periodic() {
+
+        double netP = SmartDashboard.getNumber("PID/P", 0);
+        double netI = SmartDashboard.getNumber("PID/I", 0);
+        double netD = SmartDashboard.getNumber("PID/D", 0);
+
+        double currP = config.Slot0.kP;
+        double currI = config.Slot0.kI;
+        double currD = config.Slot0.kD;
+
+
+        if(netP != currP || netI != currI || netD != currD) {
+            config.Slot0.kP = netP;
+            config.Slot0.kI = netI;
+            config.Slot0.kD = netD;
+            config.Slot0.kS = 0.12278;
+            config.Slot0.kV = 0.11522;
+            config.Slot0.kA = 0.0078728;
+            setConfig(config);
+        }
+
+    }
+
+
+    public void runShooter(double rpm) {
+        collector.setControl(velocityVoltage.withVelocity(-rpm/60));
+    }
+
+    public double getOutput() {
+        return collector.getBridgeOutput().getValueAsDouble();
+    }
+
+    public void stopMotor() {
+        collector.stopMotor();
+    }
+
+    public void setConfig(TalonFXConfiguration config) {
+        collector.getConfigurator().apply(config);
+    }
+
+
+
+}

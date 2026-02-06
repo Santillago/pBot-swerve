@@ -7,7 +7,10 @@ package team.gif.robot;
 import edu.wpi.first.wpilibj.TimedRobot;
 import edu.wpi.first.wpilibj2.command.Command;
 import edu.wpi.first.wpilibj2.command.CommandScheduler;
+import team.gif.robot.commands.ArcadeDrive;
 import team.gif.robot.commands.drivetrain.DriveSwerve;
+import team.gif.robot.subsystems.Collector;
+import team.gif.robot.subsystems.DiffDrive;
 import team.gif.robot.subsystems.drivers.Pigeon2_0;
 import team.gif.robot.subsystems.drivers.swerve.SparkMaxDriveMotor;
 import team.gif.robot.subsystems.drivers.swerve.TalonSRXTurnMotorEncoder;
@@ -34,6 +37,10 @@ public class Robot extends TimedRobot {
     public static SwerveConfiguration swerveConfig;
     public static SwerveDrivetrain swerveDrive;
 
+    public static DiffDrive differentialDrive;
+
+    public static Collector collector;
+
     public static UI ui;
 
     public static final boolean enableSwerveDebug = true;
@@ -49,13 +56,18 @@ public class Robot extends TimedRobot {
         // autonomous chooser on the dashboard.
         robotContainer = new RobotContainer();
 
-        pigeon = new Pigeon2_0(RobotMap.PIGEON_ID);
+        differentialDrive = new DiffDrive();
+        differentialDrive.setDefaultCommand(new ArcadeDrive());
+
+        collector = new Collector();
+
+//        pigeon = new Pigeon2_0(RobotMap.PIGEON_ID);
 
 //        swerveConfig = new SwerveConfiguration(new RobotMap.Mk4Map(), new Constants.Mk4Constants(), TalonFXDriveMotor::new, TalonFXTurnMotor::new, CANCoderEncoder::new);
-        swerveConfig = new SwerveConfiguration(new RobotMap.Mk3Map(), new Constants.Mk3Constants(), SparkMaxDriveMotor::new, TalonSRXTurnMotorEncoder::new, null);
-        swerveDrive = new SwerveDrivetrain(swerveConfig);
-        swerveDrive.setDefaultCommand(new DriveSwerve());
-        swerveDrive.enableDebugMode();
+//        swerveConfig = new SwerveConfiguration(new RobotMap.Mk3Map(), new Constants.Mk3Constants(), SparkMaxDriveMotor::new, TalonSRXTurnMotorEncoder::new, null);
+//        swerveDrive = new SwerveDrivetrain(swerveConfig);
+//        swerveDrive.setDefaultCommand(new DriveSwerve());
+//        swerveDrive.enableDebugMode();
 //        swerveDrive.addLimelight("limelight-front");
 
         //These should be at or near the bottom

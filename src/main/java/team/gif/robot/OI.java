@@ -3,6 +3,7 @@ package team.gif.robot;
 import edu.wpi.first.wpilibj.DriverStation;
 import edu.wpi.first.wpilibj2.command.button.CommandXboxController;
 import edu.wpi.first.wpilibj2.command.button.Trigger;
+import team.gif.robot.commands.CollectorRPM;
 import team.gif.robot.commands.drivetrain.Reset0;
 
 public class OI {
@@ -91,7 +92,7 @@ public class OI {
          *   aX.onTrue(new PrintCommand("aX"));
          */
 
-        dB.onTrue(new Reset0());
+        dB.whileTrue(new CollectorRPM());
 
 
     }
