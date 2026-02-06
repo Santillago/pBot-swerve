@@ -16,7 +16,7 @@ public class UI {
         SmartDashboard.putNumber("PID/P", 0);
         SmartDashboard.putNumber("PID/I", 0);
         SmartDashboard.putNumber("PID/D", 0);
-        SmartDashboard.putNumber("Collector/RPM", 4000);
+        SmartDashboard.putNumber("PID/Setpoint", 4000);
     }
 
     /**
@@ -26,6 +26,6 @@ public class UI {
      *     SmartDashboard.putString("Elevator", String.format("%11.2f", Elevator.getPosition());
      */
     public void update() {
-        SmartDashboard.putNumber("Collector/Output", Robot.collector.getOutput());
+        SmartDashboard.putNumber("PID/Output", Robot.collector.getSpeed());
     }
 }

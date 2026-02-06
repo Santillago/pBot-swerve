@@ -4,11 +4,9 @@
 
 package team.gif.robot.subsystems;
 
-import com.ctre.phoenix6.configs.MotorOutputConfigs;
 import com.ctre.phoenix6.configs.TalonFXConfiguration;
 import com.ctre.phoenix6.controls.VelocityVoltage;
 import com.ctre.phoenix6.hardware.TalonFX;
-import com.ctre.phoenix6.signals.NeutralModeValue;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import edu.wpi.first.wpilibj2.command.SubsystemBase;
 import team.gif.robot.RobotMap;
@@ -61,8 +59,8 @@ public class Collector extends SubsystemBase {
         collector.setControl(velocityVoltage.withVelocity(-rpm/60));
     }
 
-    public double getOutput() {
-        return collector.getBridgeOutput().getValueAsDouble();
+    public double getSpeed() {
+        return Math.abs(collector.getVelocity().getValueAsDouble() * 60);
     }
 
     public void stopMotor() {
