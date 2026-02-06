@@ -95,10 +95,10 @@ public class OI {
          */
 
         dB.whileTrue(new CollectorRPM());
-        aA.whileTrue(new InstantCommand(() -> Robot.collector.sysIdQuasistatic(SysIdRoutine.Direction.kForward)));
-        aB.whileTrue(new InstantCommand(() -> Robot.collector.sysIdQuasistatic(SysIdRoutine.Direction.kReverse)));
-        aX.whileTrue(new InstantCommand(() -> Robot.collector.sysIdDynamic(SysIdRoutine.Direction.kForward)));
-        aY.whileTrue(new InstantCommand(() -> Robot.collector.sysIdDynamic(SysIdRoutine.Direction.kReverse)));
+        aA.whileTrue(Robot.collector.sysIdQuasistatic(SysIdRoutine.Direction.kForward));
+        aB.whileTrue(Robot.collector.sysIdQuasistatic(SysIdRoutine.Direction.kReverse));
+        aX.whileTrue(Robot.collector.sysIdDynamic(SysIdRoutine.Direction.kForward));
+        aY.whileTrue(Robot.collector.sysIdDynamic(SysIdRoutine.Direction.kReverse));
 
     }
 }
