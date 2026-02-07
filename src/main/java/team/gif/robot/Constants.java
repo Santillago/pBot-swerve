@@ -91,4 +91,13 @@ public final class Constants {
     public static final class Joystick {
         public static final double DEADBAND = 0.1;
     }
+
+    public static final class Collector{
+        public static final double MOTOR_FREE_SPEED_RPM = 7530;
+        public static final double COLLECTOR_KS = 0.20462;
+        public static final double COLLECTOR_KV = 0.091686;
+        public static final double COLLECTOR_KA = 0.0019744;
+        public static final SimpleMotorFeedforward COLLECTOR_FF = new SimpleMotorFeedforward(COLLECTOR_KS, COLLECTOR_KV, COLLECTOR_KA);
+
+    }
 }
