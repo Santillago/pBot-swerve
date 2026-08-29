@@ -58,14 +58,14 @@ public class Robot extends TimedRobot {
         motorLimelight = new Limelight("key");
 
 //        swerveConfig = new SwerveConfiguration(new RobotMap.Mk4Map(), new Constants.Mk4Constants(), TalonFXDriveMotor::new, TalonFXTurnMotor::new, CANCoderEncoder::new);
-        swerveConfig = new SwerveConfiguration(new RobotMap.Mk3Map(), new Constants.Mk3Constants(), SparkMaxDriveMotor::new, TalonSRXTurnMotorEncoder::new, null);
-        swerveDrive = new SwerveDrivetrain(swerveConfig);
-        swerveDrive.setDefaultCommand(new DriveSwerve());
-        swerveDrive.enableDebugMode();
+//        swerveConfig = new SwerveConfiguration(new RobotMap.Mk3Map(), new Constants.Mk3Constants(), SparkMaxDriveMotor::new, TalonSRXTurnMotorEncoder::new, null);
+//        swerveDrive = new SwerveDrivetrain(swerveConfig);
+//        swerveDrive.setDefaultCommand(new DriveSwerve());
+//        swerveDrive.enableDebugMode();
 //        swerveDrive.addLimelight("motorLimelight-front");
 
         motorControl = new MotorControl();
-        motorControl.setDefaultCommand(new FindApriltag());
+//        motorControl.setDefaultCommand(new FindApriltag());
 
         //These should be at or near the bottom
         oi = new OI();

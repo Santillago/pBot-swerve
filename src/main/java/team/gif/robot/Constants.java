@@ -91,4 +91,7 @@ public final class Constants {
     public static final class Joystick {
         public static final double DEADBAND = 0.1;
     }
+
+    public static final double MOTOR_RPM = 1500;
+    public static final double MOTOR_VOLTAGE = 5.5;
 }

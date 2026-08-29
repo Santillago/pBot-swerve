@@ -39,6 +39,7 @@ public class MotorControl extends SubsystemBase {
     // An algorithm that detects a change in the PID values in the dashboard and updates accordingly.
     @Override
     public void periodic() {
+        System.out.print("P " + kP);
         double nuP, nuI, nuD;
         nuP = SmartDashboard.getNumber("P", kP);
         nuI = SmartDashboard.getNumber("I", kI);
@@ -52,6 +53,10 @@ public class MotorControl extends SubsystemBase {
     // A method that controls the motor based on the set velocity (in units of RPM).
     public void setRPM(double velocity) {
         neo.getClosedLoopController().setSetpoint(velocity, SparkMax.ControlType.kVelocity);
+    }
+
+    public void setVoltage(double v) {
+        neo.setVoltage(v);
     }
 
     // A method that immediately stops the motor.

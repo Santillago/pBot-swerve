@@ -1,8 +1,11 @@
 package team.gif.robot;
 
 import edu.wpi.first.wpilibj.DriverStation;
+import edu.wpi.first.wpilibj2.command.InstantCommand;
 import edu.wpi.first.wpilibj2.command.button.CommandXboxController;
 import edu.wpi.first.wpilibj2.command.button.Trigger;
+import team.gif.robot.commands.RunRPM;
+import team.gif.robot.commands.RunVoltage;
 import team.gif.robot.commands.drivetrain.Reset0;
 
 public class OI {
@@ -91,7 +94,11 @@ public class OI {
          *   aX.onTrue(new PrintCommand("aX"));
          */
 
-        dB.onTrue(new Reset0());
+//        dB.onTrue(new Reset0());
+        dB.whileTrue(new RunRPM(-Constants.MOTOR_RPM));
+        dA.whileTrue(new RunRPM(Constants.MOTOR_RPM));
+        dX.whileTrue(new RunVoltage(Constants.MOTOR_VOLTAGE));
+        dY.whileTrue(new RunVoltage(-Constants.MOTOR_VOLTAGE));
 
 
     }

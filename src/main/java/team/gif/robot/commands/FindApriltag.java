@@ -27,7 +27,7 @@ public class FindApriltag extends Command {
         */
         rpm = Robot.motorControl.motorPIDController.calculate(Robot.motorLimelight.getXOffset(), 0.0);
         // Because PID outputs are often unpredictable, it's good practice to clamp the values to prevent danger.
-        rpm = MathUtil.clamp(rpm, -1500, 1500);
+        rpm = MathUtil.clamp(rpm, -75, 75);
         // Send the desired RPM control to the motor.
         Robot.motorControl.setRPM(rpm);
     }
