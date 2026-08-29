@@ -8,6 +8,9 @@ public abstract class RobotMap {
     public static final int AUX_CONTROLLER_ID = 1;
     public static final int TEST_CONTROLLER_ID = 2;
 
+    // Neo Motor
+    public static final int SPARKMAX_ID = 34;
+
     public static final class Mk4Map extends SwerveMap {
         @Override
         protected void setIDs() {

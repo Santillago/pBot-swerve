@@ -7,15 +7,15 @@ package team.gif.robot;
 import edu.wpi.first.wpilibj.TimedRobot;
 import edu.wpi.first.wpilibj2.command.Command;
 import edu.wpi.first.wpilibj2.command.CommandScheduler;
+import team.gif.robot.commands.FindApriltag;
 import team.gif.robot.commands.drivetrain.DriveSwerve;
+import team.gif.robot.subsystems.MotorControl;
+import team.gif.robot.subsystems.drivers.Limelight;
 import team.gif.robot.subsystems.drivers.Pigeon2_0;
 import team.gif.robot.subsystems.drivers.swerve.SparkMaxDriveMotor;
 import team.gif.robot.subsystems.drivers.swerve.TalonSRXTurnMotorEncoder;
 import team.gif.robot.subsystems.drivers.swerve.utilities.SwerveConfiguration;
 import team.gif.robot.subsystems.drivers.swerve.SwerveDrivetrain;
-import team.gif.robot.subsystems.drivers.swerve.TalonFXDriveMotor;
-import team.gif.robot.subsystems.drivers.swerve.TalonFXTurnMotor;
-import team.gif.robot.subsystems.drivers.swerve.CANCoderEncoder;
 
 
 /**
@@ -31,8 +31,12 @@ public class Robot extends TimedRobot {
 
     public static Pigeon2_0 pigeon;
 
+    public static Limelight motorLimelight;
+
     public static SwerveConfiguration swerveConfig;
     public static SwerveDrivetrain swerveDrive;
+
+    public static MotorControl motorControl;
 
     public static UI ui;
 
@@ -51,12 +55,17 @@ public class Robot extends TimedRobot {
 
         pigeon = new Pigeon2_0(RobotMap.PIGEON_ID);
 
+        motorLimelight = new Limelight("key");
+
 //        swerveConfig = new SwerveConfiguration(new RobotMap.Mk4Map(), new Constants.Mk4Constants(), TalonFXDriveMotor::new, TalonFXTurnMotor::new, CANCoderEncoder::new);
         swerveConfig = new SwerveConfiguration(new RobotMap.Mk3Map(), new Constants.Mk3Constants(), SparkMaxDriveMotor::new, TalonSRXTurnMotorEncoder::new, null);
         swerveDrive = new SwerveDrivetrain(swerveConfig);
         swerveDrive.setDefaultCommand(new DriveSwerve());
         swerveDrive.enableDebugMode();
-//        swerveDrive.addLimelight("limelight-front");
+//        swerveDrive.addLimelight("motorLimelight-front");
+
+        motorControl = new MotorControl();
+        motorControl.setDefaultCommand(new FindApriltag());
 
         //These should be at or near the bottom
         oi = new OI();

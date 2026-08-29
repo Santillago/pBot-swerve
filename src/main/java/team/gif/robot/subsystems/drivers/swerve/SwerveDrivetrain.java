@@ -147,24 +147,24 @@ public class SwerveDrivetrain extends SubsystemBase {
     }
 
     /**
-     * Set the limelight enabled status
-     * @param enabled - enable limelight vision updates
+     * Set the motorLimelight enabled status
+     * @param enabled - enable motorLimelight vision updates
      */
     public void setLimelightEnabled(boolean enabled) {
         limelightEnabled = enabled;
     }
 
     /**
-     * Get the limelight enabled status
-     * @return boolean for the current limelight enabled status
+     * Get the motorLimelight enabled status
+     * @return boolean for the current motorLimelight enabled status
      */
     public boolean getLimelightEnabled() {
         return limelightEnabled;
     }
 
     /**
-     * Add a limelight to the list of limelights used for vision based odometry
-     * @param newLimelightName - the name of the limelight to add
+     * Add a motorLimelight to the list of limelights used for vision based odometry
+     * @param newLimelightName - the name of the motorLimelight to add
      */
     public void addLimelight(String newLimelightName) {
         String[] newArray = new String[limelightNames.length + 1];
@@ -175,7 +175,7 @@ public class SwerveDrivetrain extends SubsystemBase {
 
     /**
      * Get the list of limelights used for vision based odometry
-     * @return String array of limelight names
+     * @return String array of motorLimelight names
      */
     public String[] getLimelightNames() {
         return limelightNames;

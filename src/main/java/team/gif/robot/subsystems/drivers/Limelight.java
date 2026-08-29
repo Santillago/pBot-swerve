@@ -20,12 +20,12 @@ public class Limelight {
     public double _mountingAngleLLDegrees = -1;
     public double _lensHeightInches = -1;
     public double _goalHeightInches = -1;
-    public double _offsetInches = 0; // offset to be added to the calculated distance. Useful if, for example, shooter is in center of bot and limelight is on edge
+    public double _offsetInches = 0; // offset to be added to the calculated distance. Useful if, for example, shooter is in center of bot and motorLimelight is on edge
 
     /**
-     * Create a new limelight object.
+     * Create a new motorLimelight object.
      *
-     * @param key NetworkTable key specified in limelight web config
+     * @param key NetworkTable key specified in motorLimelight web config
      */
     public Limelight(String key) {
         table = NetworkTableInstance.getDefault().getTable(key);
@@ -33,14 +33,14 @@ public class Limelight {
     }
 
     /**
-     * Create a new limelight object with default key.
+     * Create a new motorLimelight object with default key.
      */
     public Limelight() {
-        this("limelight");
+        this("motorLimelight");
     }
 
     /**
-     * Sets the mode of the limelight's LED array.
+     * Sets the mode of the motorLimelight's LED array.
      * mode 0 uses LED mode in current pipeline (see {@link this#setPipeline(int)}
      * mode 1 is 'force off'
      * mode 2 is 'force blink'
@@ -65,7 +65,7 @@ public class Limelight {
 
 
     /**
-     * Sets the limelight's mode of operation.
+     * Sets the motorLimelight's mode of operation.
      * mode 0 activates vision processing (decreased exposure)
      * mode 1 activates driver vision (increased exposure, no processing)
      *
@@ -79,8 +79,8 @@ public class Limelight {
     }
 
     /**
-     * Sets the limelight's active vision pipeline.
-     * The limelight stores up to 10 pipelines indexed 0-9 (These can be configured through the Web UI).
+     * Sets the motorLimelight's active vision pipeline.
+     * The motorLimelight stores up to 10 pipelines indexed 0-9 (These can be configured through the Web UI).
      *
      * @param pipeline desired vision pipeline
      */
@@ -92,7 +92,7 @@ public class Limelight {
     }
 
     /**
-     * Sets the limelight's streaming mode.
+     * Sets the motorLimelight's streaming mode.
      * mode 0 is "Standard - Side-by-side streams if a webcam is attached to Limelight"
      * mode 1 is "PiP Main - The secondary camera stream is placed in the lower-right corner of the primary camera stream"
      * mode 2 is "PiP Secondary - The primary camera stream is placed in the lower-right corner of the secondary camera stream"
@@ -106,7 +106,7 @@ public class Limelight {
     }
 
     /**
-     * Sets the limelight's snapshot mode. The limelight allows for taking pictures throughout a match.
+     * Sets the motorLimelight's snapshot mode. The motorLimelight allows for taking pictures throughout a match.
      * mode 0 stops taking snapshots
      * mode 1 takes two snapshots per second.
      *
@@ -119,7 +119,7 @@ public class Limelight {
     }
 
     /**
-     * Returns whether the limelight has any valid targets.
+     * Returns whether the motorLimelight has any valid targets.
      *
      * @return true if has target, false if not
      */
@@ -131,7 +131,7 @@ public class Limelight {
      *
      * @return true if does not have target, false if it does
      * Needed for autonomous to continue when a target is not found
-     *     and can't use limelight::!hasTarget
+     *     and can't use motorLimelight::!hasTarget
      */
     //public boolean noTarget() {
     //return !hasTarget() || !Globals.shooterLimelightEnabled;
@@ -263,7 +263,7 @@ public class Limelight {
 
     /**
      * Stores the distance parameters for the getDistance method to be called
-     * @param mountingAngleLLDegrees degrees back the limelight is rotated from perfectly vertical
+     * @param mountingAngleLLDegrees degrees back the motorLimelight is rotated from perfectly vertical
      * @param lensHeightInches distance in inches from the center of the Limelight lens to the floor
      * @param goalHeightInches  distance from the target/AprilTag to the floor
      */
@@ -281,7 +281,7 @@ public class Limelight {
      * Distance between the robot and the target/AprilTag in inches.
      * Distance parameters must be set using setDistanceEstimatorParams prior to calling this method <br>
      * @return distance in inches <br>
-     *       returns -1 if the limelight does not have a target  <br>
+     *       returns -1 if the motorLimelight does not have a target  <br>
      *       returns -2 if the parameters were not set <br>
      */
     public double getDistance() {
@@ -295,10 +295,10 @@ public class Limelight {
 
     /**
      * distance between the robot and the target/AprilTag in inches
-     * @param mountingAngleLLDegrees degrees back the limelight is rotated from perfectly vertical
+     * @param mountingAngleLLDegrees degrees back the motorLimelight is rotated from perfectly vertical
      * @param lensHeightInches distance in inches from the center of the Limelight lens to the floor
      * @param goalHeightInches  distance from the target/AprilTag to the floor
-     * @return the distance in inches, returns -1 if the limelight does not have a target
+     * @return the distance in inches, returns -1 if the motorLimelight does not have a target
      */
     public double DistanceEstimator(double mountingAngleLLDegrees, double lensHeightInches, double goalHeightInches, double offsetInches) {
         if (!hasTarget()) {
@@ -309,7 +309,7 @@ public class Limelight {
         double angleToGoalDegrees = mountingAngleLLDegrees + targetOffsetAngle_Vertical;
         double angleToGoalRadians = angleToGoalDegrees * (3.14159 / 180.0);
 
-        //calculate distance (shooter is 4 inches behind limelight)
+        //calculate distance (shooter is 4 inches behind motorLimelight)
         return offsetInches + (goalHeightInches - lensHeightInches) / Math.tan(angleToGoalRadians);
     }
 }
